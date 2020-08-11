@@ -1,0 +1,1 @@
+Text file located in other directory different than the root path.
