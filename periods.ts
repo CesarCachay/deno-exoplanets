@@ -34,20 +34,12 @@ const loadPlanetsData = async () => {
   });
 
 
-  return planets.map(planet => {
-    return _.pick(planet, [
-      "koi_prad",
-      "koi_smass",
-      "koi_srad",
-      "kepler_name",
-      "koi_count",
-      "koi_steff"
-    ])
-  });
+  return planets.map(planet => Number(planet["koi_period"]));
 };
 
-const potentialEarths = await loadPlanetsData();
-potentialEarths.forEach(planet => console.log(planet));
+const newEarthPeriods = await loadPlanetsData();
 
-
-console.log(`${potentialEarths.length} habitable planets found!`);
+const minimalPeriod = Math.min(...newEarthPeriods);
+const maximumPeriod = Math.max(...newEarthPeriods);
+console.log(`The minimal period is ${minimalPeriod} days was the shortest orbital period found!`);
+console.log(`The maximum period is ${maximumPeriod} days was the longest orbital period found!`);
